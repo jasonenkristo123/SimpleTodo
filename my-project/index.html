@@ -6,8 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>my-project</title>
   </head>
-  <body>
-    <div id="app"></div>
+  <body class="bg-slate-200 min-h-screen flex items-center justify-center">
+    <div class="bg-white w-full max-w-md p-6 rounded-xl shadow">
+      <h1 class="text-center text-slate-700 font-semibold text-3xl mb-4">
+        To-Do List
+      </h1>
+
+      <form id="todo-form" class="flex gap-2 mb-4">
+        <input type="text" id="todo-input" placeholder="What task you want to add?" 
+        class="flex-1 border rounded-md px-3 py-2 focus:outline-none focus:ring">
+
+        <button class="bg-slate-500 text-white px-4 rounded-md">
+          Add
+        </button>
+      </form>
+
+      <ul id="todo-list" class="space-y-2"></ul>
+    </div>
+    
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
