@@ -50,7 +50,7 @@ function renderTodos() {
         li.innerHTML = `
             <div class="flex items-center gap-2">
                 <input type="checkbox" ${todo.completed ? "checked" : ""}/>
-                <span class="${todo.completed ? "line-through text-slate-400" : ""}>
+                <span class="${todo.completed ? "line-through text-slate-400" : ""}">
                     ${todo.text}
                 </span>
             </div>
