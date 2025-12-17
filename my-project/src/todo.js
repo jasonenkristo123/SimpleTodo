@@ -2,8 +2,10 @@ const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const list = document.getElementById("todo-list");
 const clearBtn = document.getElementById("clear-all");
+const filterBtn = document.querySelectorAll(".filter-btn")
 
 let todos = loadTodos();
+let currentFilter = "all";
 renderTodos();
 
 form.addEventListener("submit", e => {
@@ -32,6 +34,16 @@ clearBtn.onclick = () => {
     renderTodos();
 }
 
+filterBtn.forEach(btn => {
+    btn.onclick = () => {
+        currentFilter = btn.dataset.filter;
+
+        filterBtn.forEach(b => b.classList.remove("font-bold"));
+        btn.classList.add("font-bold");
+        renderTodos();
+    }
+})
+
 function saveTodos() {
     localStorage.setItem("todos", JSON.stringify(todos));
 }   
@@ -44,7 +56,15 @@ function loadTodos() {
 function renderTodos() {
     list.innerHTML = "";
 
-    todos.forEach(todo => {
+    let filteredTodos = todos;
+    
+    if (currentFilter === "active") {
+        filteredTodos = todos.filter(t => !t.completed);
+    } else if (currentFilter === "completed") {
+        filteredTodos = todos.filter(t => t.completed);
+    }
+
+    filteredTodos.forEach(todo => {
         const li = document.createElement("li");
         li.className = "flex justify-between items-center bg-slate-100 border py-2 px-3 rounded-md";
         li.innerHTML = `

@@ -17,8 +17,15 @@
         <button class="bg-slate-700 text-white rounded-md px-4 font-semibold ">Add</button>
       </form>
 
+      <div class="flex justify-center gap-2 mb-4">
+        <button data-filter="all" class="filter-btn bg-slate-500 px-3 py-1 rounded-md font-bold text-white">ALL</button>
+        <button data-filter="active" class="filter-btn bg-slate-500 px-3 py-1 rounded-md text-white">Active</button>
+        <button data-filter="completed" class="filter-btn bg-slate-500 px-3 py-1 rounded-md text-white">Completed</button>
+        <button id="clear-all" class="w-full h-full bg-red-900 font-bold text-white py-2 rounded-md">Clear All</button>
+      </div>
+
       <ul id="todo-list" class="space-y-2"></ul>
-      <button id="clear-all" class="mt-4 w-full bg-slate-700 font-bold text-white py-2 rounded-md">Clear All</button>
+      
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
