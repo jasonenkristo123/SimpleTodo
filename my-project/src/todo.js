@@ -54,7 +54,10 @@ function renderTodos() {
                     ${todo.text}
                 </span>
             </div>
-            <button class="px-4 rounded-md text-white bg-purple-800">X</button>
+            <div class="flex gap-2">
+                <button class="edit-btn px-4 rounded-md text-white bg-blue-500">Edit</button>
+                <button class="delete-btn px-4 rounded-md text-white bg-purple-800">X</button>
+            </div>
         `;
 
         li.querySelector("input").onchange = () => {
@@ -63,11 +66,32 @@ function renderTodos() {
             renderTodos();
         }
 
-        li.querySelector("button").onclick = () => {
+        li.querySelector(".edit-btn").onclick = () => {
+            const span = li.querySelector("span");
+            const inputEdit = document.createElement("input");
+            inputEdit.type = "text";
+            inputEdit.value = todo.text;
+            inputEdit.className = "borded rounded-md px-2 py-1";
+
+            span.replaceWith(inputEdit);
+            inputEdit.focus();
+
+            inputEdit.onblur = () => {
+                todo.text = inputEdit.value.trim() || todo.text;
+                saveTodos();
+                renderTodos();
+            };
+
+            inputEdit.onkeydown = e => {
+                if (e.key === "Enter") inputEdit.blur();
+            };
+        };
+
+        li.querySelector(".delete-btn").onclick = () => {
             todos = todos.filter(t => t.id !== todo.id);
             saveTodos();
             renderTodos();
-        }
+        };
         list.appendChild(li);
     })
 }
